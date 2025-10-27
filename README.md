@@ -54,32 +54,6 @@ brew install fc-appkey
 
 Download the latest release for your platform from the [releases page](https://github.com/vrypan/fc-appkey/releases).
 
-**macOS:**
-```bash
-# Intel Mac
-curl -L https://github.com/vrypan/fc-appkey/releases/latest/download/fc-appkey_Darwin_x86_64.tar.gz | tar xz
-sudo mv fc-appkey /usr/local/bin/
-
-# Apple Silicon (M1/M2/M3)
-curl -L https://github.com/vrypan/fc-appkey/releases/latest/download/fc-appkey_Darwin_arm64.tar.gz | tar xz
-sudo mv fc-appkey /usr/local/bin/
-```
-
-**Linux:**
-```bash
-# x86_64
-curl -L https://github.com/vrypan/fc-appkey/releases/latest/download/fc-appkey_Linux_x86_64.tar.gz | tar xz
-sudo mv fc-appkey /usr/local/bin/
-
-# ARM64
-curl -L https://github.com/vrypan/fc-appkey/releases/latest/download/fc-appkey_Linux_arm64.tar.gz | tar xz
-sudo mv fc-appkey /usr/local/bin/
-```
-
-**Windows:**
-
-Download the appropriate `.tar.gz` file from the [releases page](https://github.com/vrypan/fc-appkey/releases) and extract it.
-
 ### Build from Source
 
 ```bash
