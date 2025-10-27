@@ -34,10 +34,10 @@ brews:
   - repository:
       owner: vrypan
       name: homebrew-tap
+    directory: Formula
     homepage: https://github.com/vrypan/fc-appkey
     description: "Farcaster Application Key Generator"
     license: "MIT"
-    folder: Formula
     install: |
       bin.install "fc-appkey"
     test: |
