@@ -23,6 +23,9 @@ import (
 	"github.com/tyler-smith/go-bip39"
 )
 
+// Version will be set at build time via -ldflags
+var Version = "dev"
+
 type SignedKeyRequestResponse struct {
 	Result struct {
 		SignedKeyRequest struct {
@@ -42,6 +45,12 @@ type PollResponse struct {
 }
 
 func main() {
+	// Check for version flag
+	if len(os.Args) > 1 && (os.Args[1] == "--version" || os.Args[1] == "-v") {
+		fmt.Printf("fc-appkey version %s\n", Version)
+		os.Exit(0)
+	}
+
 	// Check for help flag
 	if len(os.Args) > 1 && (os.Args[1] == "--help" || os.Args[1] == "-h") {
 		printHelp()
@@ -348,7 +357,7 @@ func printHelp() {
 	fmt.Println("and automatic approval via Warpcast.")
 	fmt.Println()
 	fmt.Println("USAGE:")
-	fmt.Println("  fc-appkey [--help]")
+	fmt.Println("  fc-appkey [--help] [--version]")
 	fmt.Println()
 	fmt.Println("DESCRIPTION:")
 	fmt.Println("  This tool generates a new ed25519 keypair for Farcaster applications and")
