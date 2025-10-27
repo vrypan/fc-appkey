@@ -42,6 +42,12 @@ type PollResponse struct {
 }
 
 func main() {
+	// Check for help flag
+	if len(os.Args) > 1 && (os.Args[1] == "--help" || os.Args[1] == "-h") {
+		printHelp()
+		os.Exit(0)
+	}
+
 	fmt.Println("fc-appkey - Farcaster Application Key Generator")
 	fmt.Println("================================================\n")
 
@@ -333,4 +339,63 @@ func pollForApproval(token string) (int, error) {
 	}
 
 	return 0, fmt.Errorf("timeout waiting for approval")
+}
+
+func printHelp() {
+	fmt.Println("fc-appkey - Farcaster Application Key Generator")
+	fmt.Println()
+	fmt.Println("Generate a new Farcaster application key (signer) with proper EIP-712 signing")
+	fmt.Println("and automatic approval via Warpcast.")
+	fmt.Println()
+	fmt.Println("USAGE:")
+	fmt.Println("  fc-appkey [--help]")
+	fmt.Println()
+	fmt.Println("DESCRIPTION:")
+	fmt.Println("  This tool generates a new ed25519 keypair for Farcaster applications and")
+	fmt.Println("  guides you through the approval process.")
+	fmt.Println()
+	fmt.Println("  The tool will:")
+	fmt.Println("    1. Generate a new ed25519 keypair")
+	fmt.Println("    2. Create an EIP-712 signed key request using your developer credentials")
+	fmt.Println("    3. Display an approval URL and QR code")
+	fmt.Println("    4. Poll for user approval (up to 10 minutes)")
+	fmt.Println("    5. Display the approved key credentials")
+	fmt.Println()
+	fmt.Println("ENVIRONMENT VARIABLES:")
+	fmt.Println("  FC_DEVELOPER_FID")
+	fmt.Println("      Your developer/app Farcaster ID (FID)")
+	fmt.Println("      If not set, you will be prompted interactively")
+	fmt.Println()
+	fmt.Println("  FC_DEVELOPER_MNEMONIC")
+	fmt.Println("      Your developer account mnemonic phrase (12-24 words)")
+	fmt.Println("      If not set, you will be prompted interactively")
+	fmt.Println("      Keep this secure - never commit it to version control")
+	fmt.Println()
+	fmt.Println("EXAMPLES:")
+	fmt.Println("  # Using environment variables (recommended for automation)")
+	fmt.Println("  export FC_DEVELOPER_FID=280")
+	fmt.Println("  export FC_DEVELOPER_MNEMONIC=\"word1 word2 word3 ...\"")
+	fmt.Println("  fc-appkey")
+	fmt.Println()
+	fmt.Println("  # Interactive mode (will prompt for FID and mnemonic)")
+	fmt.Println("  fc-appkey")
+	fmt.Println()
+	fmt.Println("PREREQUISITES:")
+	fmt.Println("  - A Farcaster account with a developer FID")
+	fmt.Println("  - The mnemonic phrase for your developer account")
+	fmt.Println()
+	fmt.Println("OUTPUT:")
+	fmt.Println("  The tool will display:")
+	fmt.Println("    - Generated public and private keys")
+	fmt.Println("    - Approval URL (for manual access)")
+	fmt.Println("    - QR code (scan with your phone to approve)")
+	fmt.Println("    - Approved FID and final key credentials")
+	fmt.Println()
+	fmt.Println("  Save the private key securely - you'll need it for your application.")
+	fmt.Println()
+	fmt.Println("SECURITY:")
+	fmt.Println("  - Keep your mnemonic phrase secure")
+	fmt.Println("  - Store generated private keys safely")
+	fmt.Println("  - Use environment variables for automated setups")
+	fmt.Println("  - Never commit mnemonics or private keys to version control")
 }
