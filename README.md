@@ -2,6 +2,8 @@
 
 A standalone tool to generate Farcaster application keys (signers).
 
+**This is a Go port of @stevedylandev's https://github.com/stevedylandev/cast-keys.**
+
 ## What it does
 
 Generates a new ed25519 keypair and requests approval from Farcaster via Warpcast.
