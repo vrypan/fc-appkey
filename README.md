@@ -1,3 +1,5 @@
+![banner](og.png)
+
 # fc-appkey
 
 A standalone tool to generate Farcaster application keys (signers).
