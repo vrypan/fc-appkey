@@ -308,13 +308,15 @@ func derivePrivateKey(seed []byte) (*ecdsa.PrivateKey, error) {
 		return nil, fmt.Errorf("failed to derive address key: %w", err)
 	}
 
-	// Get the private key
-	privKey, err := addressKey.ECPrivKey()
+	// Get the private key bytes
+	privKeyBytes, err := addressKey.ECPrivKey()
 	if err != nil {
 		return nil, fmt.Errorf("failed to get EC private key: %w", err)
 	}
 
-	return privKey.ToECDSA(), nil
+	// Use go-ethereum's ToECDSA to properly set the secp256k1 curve
+	// This works correctly with and without CGO
+	return crypto.ToECDSA(privKeyBytes.Serialize())
 }
 
 func pollForApproval(token string) (int, error) {
