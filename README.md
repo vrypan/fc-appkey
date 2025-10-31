@@ -1,4 +1,4 @@
-![banner](og.png)
+![banner](opengraph.png)
 
 # fc-appkey
 
